@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+    web:
+        build: 
+            context: ./php-apache
+            args:
+                - PHP_TAG=${PHP_TAG}
+                - WEB_USER=${WEB_USER}
+                - WEB_GROUP=${WEB_GROUP}
+                - WORKING_DIR=${WORKING_DIR}
+        ports:
+            - 80:80
+        volumes:
+            - ~/projects/dev_web/:${WORKING_DIR}/
+            - ./log/apache/:/var/log/apache2/
+        depends_on:
+            - db
+        links:
+            - db:db
+    db:
+        build:
+            context: ./mysql
+            args:
+                - MYSQL_TAG=${MYSQL_TAG}
+
+        ports:
+            - 3306:3306
+        volumes:
+            - ./database:${MYSQL_DATA_DIR}
+            - ./log/mysql:${MYSQL_LOG_DIR}
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+

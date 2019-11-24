@@ -1,0 +1,3 @@
+ARG MYSQL_TAG
+
+FROM mariadb:${MYSQL_TAG}
