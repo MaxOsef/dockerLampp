@@ -4,5 +4,4 @@ config*.xml
 *.log
 tags
 database/*
-log/apache/*
-log/mysql/*
+!database/.keepme
