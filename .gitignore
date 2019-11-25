@@ -1,6 +1,7 @@
 config*.xml
 *.cache
 *.swp
+*.log
 tags
 database/*
 log/apache/*
