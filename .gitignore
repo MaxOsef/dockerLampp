@@ -3,3 +3,5 @@ config*.xml
 *.swp
 tags
 database/*
+log/apache/*
+log/mysql/*
