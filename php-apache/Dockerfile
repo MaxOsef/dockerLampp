@@ -40,6 +40,7 @@ COPY default.conf /etc/apache2/sites-available/
 COPY five.devel.conf /etc/apache2/sites-available/
 COPY six.devel.conf /etc/apache2/sites-available/
 COPY seven.devel.conf /etc/apache2/sites-available/
+COPY seven50.devel.conf /etc/apache2/sites-available/
 COPY seven60.devel.conf /etc/apache2/sites-available/
 COPY tbone.devel.conf /etc/apache2/sites-available/
 
@@ -47,6 +48,7 @@ RUN ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/d
 RUN ln -s /etc/apache2/sites-available/five.devel.conf /etc/apache2/sites-enabled/five.devel.conf
 RUN ln -s /etc/apache2/sites-available/six.devel.conf /etc/apache2/sites-enabled/six.devel.conf
 RUN ln -s /etc/apache2/sites-available/seven.devel.conf /etc/apache2/sites-enabled/seven.devel.conf
+RUN ln -s /etc/apache2/sites-available/seven50.devel.conf /etc/apache2/sites-enabled/seven50.devel.conf
 RUN ln -s /etc/apache2/sites-available/seven60.devel.conf /etc/apache2/sites-enabled/seven60.devel.conf
 RUN ln -s /etc/apache2/sites-available/tbone.devel.conf /etc/apache2/sites-enabled/tbone.devel.conf
 
