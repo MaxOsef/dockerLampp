@@ -2,6 +2,8 @@ config*.xml
 *.cache
 *.swp
 *.log
+.env
 tags
+local/
 database/*
 !database/.keepme
