@@ -4,6 +4,6 @@ config*.xml
 *.log
 .env
 tags
-local/
+local/*
 database/*
-!database/.keepme
+!.keepme
