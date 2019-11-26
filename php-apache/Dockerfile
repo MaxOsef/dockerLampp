@@ -58,4 +58,5 @@ RUN ln -s /etc/apache2/sites-available/wpfive.devel.conf /etc/apache2/sites-enab
 RUN usermod -u 1000 ${WEB_USER} \
     && groupmod -g 1000 ${WEB_GROUP} \
     && chgrp -R ${WEB_GROUP} /etc/apache2 \
-    && chown -R ${WEB_USER}:${WEB_GROUP} ${WORKDIR}
+    && chown -R ${WEB_USER}:${WEB_GROUP} ${WORKDIR} \
+    && chmod ug+s ${WORKDIR}
