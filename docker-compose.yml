@@ -8,11 +8,11 @@ services:
                 - PHP_TAG=${PHP_TAG}
                 - WEB_USER=${WEB_USER}
                 - WEB_GROUP=${WEB_GROUP}
-                - WORKING_DIR=${WORKING_DIR}
+                - WORKDIR=${WORKDIR}
         ports:
             - 80:80
         volumes:
-            - ~/projects/dev_web/:${WORKING_DIR}/
+            - ${LOCAL_WORKDIR}:${WORKDIR}/
             - ./log/apache/:/var/log/apache2/
         depends_on:
             - db

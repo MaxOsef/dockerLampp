@@ -2,7 +2,7 @@ ARG PHP_TAG
 
 FROM php:${PHP_TAG}-apache
 
-ARG WORKING_DIR
+ARG WORKDIR
 ARG WEB_USER
 ARG WEB_GROUP
 
@@ -43,6 +43,7 @@ COPY seven.devel.conf /etc/apache2/sites-available/
 COPY seven50.devel.conf /etc/apache2/sites-available/
 COPY seven60.devel.conf /etc/apache2/sites-available/
 COPY tbone.devel.conf /etc/apache2/sites-available/
+COPY wpfive.devel.conf /etc/apache2/sites-available/
 
 RUN ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/default..conf
 RUN ln -s /etc/apache2/sites-available/five.devel.conf /etc/apache2/sites-enabled/five.devel.conf
@@ -51,9 +52,10 @@ RUN ln -s /etc/apache2/sites-available/seven.devel.conf /etc/apache2/sites-enabl
 RUN ln -s /etc/apache2/sites-available/seven50.devel.conf /etc/apache2/sites-enabled/seven50.devel.conf
 RUN ln -s /etc/apache2/sites-available/seven60.devel.conf /etc/apache2/sites-enabled/seven60.devel.conf
 RUN ln -s /etc/apache2/sites-available/tbone.devel.conf /etc/apache2/sites-enabled/tbone.devel.conf
+RUN ln -s /etc/apache2/sites-available/wpfive.devel.conf /etc/apache2/sites-enabled/wpfive.devel.conf
 
 # Handling permissions
 RUN usermod -u 1000 ${WEB_USER} \
     && groupmod -g 1000 ${WEB_GROUP} \
     && chgrp -R ${WEB_GROUP} /etc/apache2 \
-    && chown -R ${WEB_USER}:${WEB_GROUP} ${WORKING_DIR}
+    && chown -R ${WEB_USER}:${WEB_GROUP} ${WORKDIR}
