@@ -13,6 +13,8 @@ COPY php.ini /usr/local/etc/php/php.ini
 RUN apt-get update \
 	&& apt-get install -y libmcrypt-dev \
 		libjpeg62-turbo-dev \
+        libjpeg-dev \
+        libmagickwand-dev \
 		libpcre3-dev \
 		libpng-dev \
 		libfreetype6-dev \
@@ -23,9 +25,12 @@ RUN apt-get update \
 		wget \
 		unzip \
         git \
+        ghostscript \
     && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install iconv intl pdo_mysql mbstring soap gd zip
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
+    && docker-php-ext-install -j "$(nproc)" iconv intl pdo_mysql mbstring soap gd zip bcmath exif mysqli opcache zip \
+    && pecl install imagick-3.4.4 \
+    && docker-php-ext-enable imagick
 
 RUN docker-php-source extract \
     && if [ -d "/usr/src/php/ext/mysql" ]; then docker-php-ext-install mysql; fi \
